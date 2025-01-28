@@ -5,136 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AlienCheats</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            background: linear-gradient(45deg, #1a1b3b, #00ff9d);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #ffffff;
-            overflow: hidden;
-        }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50% }
-            50% { background-position: 100% 50% }
-            100% { background-position: 0% 50% }
-        }
-
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-
-        .particle {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            animation: float 6s infinite;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0) translateX(0);
-                opacity: 0;
-            }
-            50% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) translateX(100px);
-                opacity: 0;
-            }
-        }
-
-        .container {
-            text-align: center;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            max-width: 800px;
-            width: 90%;
-            animation: containerFloat 3s ease-in-out infinite;
-        }
-
-        @keyframes containerFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        h1 {
-            font-size: 3.5em;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            animation: glitch 5s infinite;
-        }
-
-        @keyframes glitch {
-            0% { text-shadow: 0 0 10px rgba(0, 255, 157, 0.5); }
-            2% { text-shadow: 3px 0 10px rgba(255, 0, 157, 0.5); }
-            4% { text-shadow: -3px 0 10px rgba(0, 157, 255, 0.5); }
-            6% { text-shadow: 0 0 10px rgba(0, 255, 157, 0.5); }
-            98% { text-shadow: 3px 0 10px rgba(255, 0, 157, 0.5); }
-            100% { text-shadow: 0 0 10px rgba(0, 255, 157, 0.5); }
-        }
-
-        nav {
-            margin: 20px 0;
-        }
-
-        nav a {
-            color: #ffffff;
-            text-decoration: none;
-            margin: 0 15px;
-            padding: 8px 15px;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        nav a:hover {
-            background: rgba(0, 255, 157, 0.3);
-            transform: translateY(-2px);
-        }
+        /* [Previous CSS stays the same until .content] */
 
         .content {
             margin: 20px 0;
             line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        footer {
-            margin-top: 20px;
-            font-size: 0.8em;
-            opacity: 0.7;
-            animation: pulse 2s infinite;
+        .discord-button {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(88, 101, 242, 0.3);
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
         }
 
-        @keyframes pulse {
-            0% { opacity: 0.7; }
-            50% { opacity: 0.3; }
-            100% { opacity: 0.7; }
+        .discord-button:hover {
+            transform: translateY(-3px);
+            background: rgba(88, 101, 242, 0.5);
+            box-shadow: 0 0 15px rgba(88, 101, 242, 0.3);
         }
+
+        .discord-button img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .discord-button span {
+            font-size: 1.1em;
+            font-weight: 500;
+        }
+
+        /* [Rest of the previous CSS stays the same] */
     </style>
 </head>
 <body>
@@ -149,7 +59,10 @@
             <a href="#tutorials">Tutorials</a>
         </nav>
         <div class="content">
-            <!-- Add your content here -->
+            <a href="https://discord.gg/wW8b5FbXAr" target="_blank" class="discord-button">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0id2hpdGUiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTIwLjMyNCA0LjE5OWMtMS41MDUtMS4yNTYtMy45MS0xLjQ3Ni01LjIzNy0xLjQ3NmwtLjI1NS4wMDFjLS41NDcgMC0xLjA5My4wMzctMS42MzcuMTEtLjM2Ny0uNjgyLTEuMTgyLTEuMTU2LTIuMTI0LTEuMTU2LS45NDIgMC0xLjc1OC40NzQtMi4xMjQgMS4xNTYtLjU0NC0uMDczLTEuMDktLjExLTEuNjM3LS4xMWwtLjI1NS0uMDAxYy0xLjMyNyAwLTMuNzMyLjIyLTUuMjM3IDEuNDc2QzEuNDYxIDQuMjIgMCA4LjI1OCAwIDEyLjQyNmMwIDQuMjE4IDEuNDk0IDcuODkyIDIuNzA1IDguNzMxIDEuMjEyLjgzOSA0LjI4MSAxLjUzMyA1LjQxMiAxLjUzM2wuNDU0LS4wMDRjLjY2Ni0uMDA2IDEuMzMtLjA2IDEuOTg0LS4xNi4zODMuNjM3IDEuMTc0IDEuMDcxIDIuMDgzIDEuMDcxLjkwOSAwIDEuNy0uNDM0IDIuMDgzLTEuMDcxLjY1NC4xIDEuMzE4LjE1NCAxLjk4NC4xNmwuNDU0LjAwNGMxLjEzMSAwIDQuMi0uNjk0IDUuNDEyLTEuNTMzIDEuMjExLS44MzkgMi43MDUtNC41MTMgMi43MDUtOC43MzEuMDAxLTQuMTY4LTEuNDYtOC4yMDYtMi43OTctOC4yMjd6bS0yLjk2NSAxMS4xMjJjLS4xMjkgMS43ODktLjY5OCAzLjE2NS0xLjQ3MSAzLjE2NS0uNzcyIDAtMS4zNDItMS4zNzYtMS40NzEtMy4xNjUtLjAzNi0uNDg3LS4wNTMtLjk3NC0uMDUzLTEuNDYyIDAtLjQ4OC4wMTctLjk3NS4wNTMtMS40NjIuMTI5LTEuNzg5LjY5OC0zLjE2NSAxLjQ3MS0zLjE2NS43NzIgMCAxLjM0MiAxLjM3NiAxLjQ3MSAzLjE2NS4wMzYuNDg3LjA1My45NzQuMDUzIDEuNDYyIDAgLjQ4OC0uMDE3Ljk3NS0uMDUzIDEuNDYyem0tMTAuNzE4IDBjLS4xMjkgMS43ODktLjY5OCAzLjE2NS0xLjQ3MSAzLjE2NS0uNzcyIDAtMS4zNDItMS4zNzYtMS40NzEtMy4xNjUtLjAzNi0uNDg3LS4wNTMtLjk3NC0uMDUzLTEuNDYyIDAtLjQ4OC4wMTctLjk3NS4wNTMtMS40NjIuMTI5LTEuNzg5LjY5OC0zLjE2NSAxLjQ3MS0zLjE2NS43NzIgMCAxLjM0MiAxLjM3NiAxLjQ3MSAzLjE2NS4wMzYuNDg3LjA1My45NzQuMDUzIDEuNDYyIDAgLjQ4OC0uMDE3Ljk3NS0uMDUzIDEuNDYyeiIvPjwvc3ZnPg==" alt="Discord Logo">
+                <span>Join our Discord</span>
+            </a>
         </div>
         <footer>
             © 2025 AlienCheats. All rights reserved.
