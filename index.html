@@ -17,11 +17,54 @@
             padding: 0;
             min-height: 100vh;
             background: linear-gradient(45deg, #1a1b3b, #00ff9d);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             color: #ffffff;
+            overflow: hidden;
+        }
+
+        /* Animated Background */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50% }
+            50% { background-position: 100% 50% }
+            100% { background-position: 0% 50% }
+        }
+
+        /* Floating Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float 6s infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
         }
 
         .container {
@@ -33,6 +76,12 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             max-width: 800px;
             width: 90%;
+            animation: containerFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes containerFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         h1 {
@@ -40,22 +89,17 @@
             margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 3px;
-            text-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
+            animation: glitch 5s infinite;
         }
 
-        .glow {
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
-            }
-            to {
-                text-shadow: 0 0 20px rgba(0, 255, 157, 0.8),
-                             0 0 30px rgba(0, 255, 157, 0.6),
-                             0 0 40px rgba(0, 255, 157, 0.4);
-            }
+        /* Glitch Effect */
+        @keyframes glitch {
+            0% { text-shadow: 0 0 10px rgba(0, 255, 157, 0.5); }
+            2% { text-shadow: 3px 0 10px rgba(255, 0, 157, 0.5); }
+            4% { text-shadow: -3px 0 10px rgba(0, 157, 255, 0.5); }
+            6% { text-shadow: 0 0 10px rgba(0, 255, 157, 0.5); }
+            98% { text-shadow: 3px 0 10px rgba(255, 0, 157, 0.5); }
+            100% { text-shadow: 0 0 10px rgba(0, 255, 157, 0.5); }
         }
 
         nav {
@@ -70,11 +114,33 @@
             border-radius: 5px;
             transition: all 0.3s ease;
             background: rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
         }
 
         nav a:hover {
             background: rgba(0, 255, 157, 0.3);
             transform: translateY(-2px);
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        nav a:hover::before {
+            left: 100%;
         }
 
         .content {
@@ -86,12 +152,22 @@
             margin-top: 20px;
             font-size: 0.8em;
             opacity: 0.7;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 0.3; }
+            100% { opacity: 0.7; }
         }
     </style>
 </head>
 <body>
+    <!-- Particle container -->
+    <div class="particles" id="particles"></div>
+
     <div class="container">
-        <h1 class="glow">AlienCheats</h1>
+        <h1>AlienCheats</h1>
         <nav>
             <a href="#home">Home</a>
             <a href="#cheats">Cheats</a>
@@ -105,5 +181,17 @@
             © 2025 AlienCheats. All rights reserved.
         </footer>
     </div>
+
+    <script>
+        // Create floating particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDelay = Math.random() * 5 + 's';
+            particlesContainer.appendChild(particle);
+        }
+    </script>
 </body>
 </html>
