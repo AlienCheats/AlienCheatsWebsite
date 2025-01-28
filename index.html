@@ -5,7 +5,118 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AlienCheats</title>
     <style>
-        /* [Previous CSS stays the same until .content] */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #1a1b3b, #00ff9d);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50% }
+            50% { background-position: 100% 50% }
+            100% { background-position: 0% 50% }
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float 6s infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 800px;
+            width: 90%;
+            animation: containerFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes containerFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            animation: glitch 5s infinite;
+        }
+
+        @keyframes glitch {
+            0% { text-shadow: 0 0 10px rgba(0, 255, 157, 0.5); }
+            2% { text-shadow: 3px 0 10px rgba(255, 0, 157, 0.5); }
+            4% { text-shadow: -3px 0 10px rgba(0, 157, 255, 0.5); }
+            6% { text-shadow: 0 0 10px rgba(0, 255, 157, 0.5); }
+            98% { text-shadow: 3px 0 10px rgba(255, 0, 157, 0.5); }
+            100% { text-shadow: 0 0 10px rgba(0, 255, 157, 0.5); }
+        }
+
+        nav {
+            margin: 20px 0;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        nav a:hover {
+            background: rgba(0, 255, 157, 0.3);
+            transform: translateY(-2px);
+        }
 
         .content {
             margin: 20px 0;
@@ -13,6 +124,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 100px;
         }
 
         .discord-button {
@@ -44,7 +156,18 @@
             font-weight: 500;
         }
 
-        /* [Rest of the previous CSS stays the same] */
+        footer {
+            margin-top: 20px;
+            font-size: 0.8em;
+            opacity: 0.7;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 0.3; }
+            100% { opacity: 0.7; }
+        }
     </style>
 </head>
 <body>
