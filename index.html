@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AlienCheats</title>
+    <title>AlienCheats - DNS</title>
     <style>
         * {
             margin: 0;
@@ -24,7 +24,7 @@
             align-items: center;
             justify-content: center;
             color: #ffffff;
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
         @keyframes gradientBG {
@@ -40,6 +40,7 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
+            z-index: -1;
         }
 
         .particle {
@@ -72,14 +73,9 @@
             border-radius: 15px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            max-width: 800px;
+            max-width: 1200px;
             width: 90%;
-            animation: containerFloat 3s ease-in-out infinite;
-        }
-
-        @keyframes containerFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            margin: 20px auto;
         }
 
         h1 {
@@ -118,42 +114,61 @@
             transform: translateY(-2px);
         }
 
-        .content {
-            margin: 20px 0;
-            line-height: 1.6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100px;
+        .dns-section {
+            text-align: center;
+            padding: 20px;
         }
 
-        .discord-button {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(88, 101, 242, 0.3);
-            padding: 12px 24px;
-            border-radius: 8px;
-            text-decoration: none;
+        .dns-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .dns-button {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .dns-button:hover {
+            transform: translateY(-5px);
+        }
+
+        .dns-button h3 {
+            color: #00ff9d;
+            margin-bottom: 10px;
+        }
+
+        .dns-button p {
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: rgba(0, 255, 157, 0.2);
             color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
             transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
         }
 
-        .discord-button:hover {
-            transform: translateY(-3px);
-            background: rgba(88, 101, 242, 0.5);
-            box-shadow: 0 0 15px rgba(88, 101, 242, 0.3);
+        .download-btn:hover {
+            background: rgba(0, 255, 157, 0.4);
+            transform: translateY(-2px);
         }
 
-        .discord-button img {
-            width: 24px;
-            height: 24px;
-        }
-
-        .discord-button span {
-            font-size: 1.1em;
-            font-weight: 500;
+        .dns-image {
+            width: 200px;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 0 10px rgba(0, 255, 157, 0.5));
         }
 
         footer {
@@ -181,12 +196,55 @@
             <a href="#direct-installs">Direct Installs</a>
             <a href="#tutorials">Tutorials</a>
         </nav>
-        <div class="content">
-            <a href="https://discord.gg/wW8b5FbXAr" target="_blank" class="discord-button">
-                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0id2hpdGUiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTIwLjMyNCA0LjE5OWMtMS41MDUtMS4yNTYtMy45MS0xLjQ3Ni01LjIzNy0xLjQ3NmwtLjI1NS4wMDFjLS41NDcgMC0xLjA5My4wMzctMS42MzcuMTEtLjM2Ny0uNjgyLTEuMTgyLTEuMTU2LTIuMTI0LTEuMTU2LS45NDIgMC0xLjc1OC40NzQtMi4xMjQgMS4xNTYtLjU0NC0uMDczLTEuMDktLjExLTEuNjM3LS4xMWwtLjI1NS0uMDAxYy0xLjMyNyAwLTMuNzMyLjIyLTUuMjM3IDEuNDc2QzEuNDYxIDQuMjIgMCA4LjI1OCAwIDEyLjQyNmMwIDQuMjE4IDEuNDk0IDcuODkyIDIuNzA1IDguNzMxIDEuMjEyLjgzOSA0LjI4MSAxLjUzMyA1LjQxMiAxLjUzM2wuNDU0LS4wMDRjLjY2Ni0uMDA2IDEuMzMtLjA2IDEuOTg0LS4xNi4zODMuNjM3IDEuMTc0IDEuMDcxIDIuMDgzIDEuMDcxLjkwOSAwIDEuNy0uNDM0IDIuMDgzLTEuMDcxLjY1NC4xIDEuMzE4LjE1NCAxLjk4NC4xNmwuNDU0LjAwNGMxLjEzMSAwIDQuMi0uNjk0IDUuNDEyLTEuNTMzIDEuMjExLS44MzkgMi43MDUtNC41MTMgMi43MDUtOC43MzEuMDAxLTQuMTY4LTEuNDYtOC4yMDYtMi43OTctOC4yMjd6bS0yLjk2NSAxMS4xMjJjLS4xMjkgMS43ODktLjY5OCAzLjE2NS0xLjQ3MSAzLjE2NS0uNzcyIDAtMS4zNDItMS4zNzYtMS40NzEtMy4xNjUtLjAzNi0uNDg3LS4wNTMtLjk3NC0uMDUzLTEuNDYyIDAtLjQ4OC4wMTctLjk3NS4wNTMtMS40NjIuMTI5LTEuNzg5LjY5OC0zLjE2NSAxLjQ3MS0zLjE2NS43NzIgMCAxLjM0MiAxLjM3NiAxLjQ3MSAzLjE2NS4wMzYuNDg3LjA1My45NzQuMDUzIDEuNDYyIDAgLjQ4OC0uMDE3Ljk3NS0uMDUzIDEuNDYyem0tMTAuNzE4IDBjLS4xMjkgMS43ODktLjY5OCAzLjE2NS0xLjQ3MSAzLjE2NS0uNzcyIDAtMS4zNDItMS4zNzYtMS40NzEtMy4xNjUtLjAzNi0uNDg3LS4wNTMtLjk3NC0uMDUzLTEuNDYyIDAtLjQ4OC4wMTctLjk3NS4wNTMtMS40NjIuMTI5LTEuNzg5LjY5OC0zLjE2NSAxLjQ3MS0zLjE2NS43NzIgMCAxLjM0MiAxLjM3NiAxLjQ3MSAzLjE2NS4wMzYuNDg3LjA1My45NzQuMDUzIDEuNDYyIDAgLjQ4OC0uMDE3Ljk3NS0uMDUzIDEuNDYyeiIvPjwvc3ZnPg==" alt="Discord Logo">
-                <span>Join our Discord</span>
-            </a>
+
+        <div class="dns-section">
+            <img src="path-to-your-dns-image.png" alt="DNS Icon" class="dns-image">
+            
+            <div class="dns-buttons">
+                <!-- Spartan DNS -->
+                <div class="dns-button">
+                    <h3>Spartan DNS</h3>
+                    <p>9/10 Success Rate</p>
+                    <a href="https://raw.githubusercontent.com/geololll/VyperHub/main/VyperHubs.mobileconfig" class="download-btn">Get DNS</a>
+                </div>
+
+                <!-- CSL DNS -->
+                <div class="dns-button">
+                    <h3>CSL DNS</h3>
+                    <p>10/10 Success Rate</p>
+                    <a href="https://cdn.discordapp.com/attachments/1195472555071516775/1278801685476540466/CSLdns.mobileconfig?ex=66d2c920&is=66d177a0&hm=df7d8dc5f0d9be64f4b200c65b3c866ec6f91189c73f0946f9984477012e1695&" class="download-btn">Get DNS</a>
+                </div>
+
+                <!-- Anti Revoke DNS -->
+                <div class="dns-button">
+                    <h3>Anti Revoke DNS</h3>
+                    <p>10/10 Success Rate</p>
+                    <a href="https://github.com/toasty-dev/Khomod/raw/7401ca4719c9080a96ee902f800ebf009f08912b/khomod.mobileconfig" class="download-btn">Get DNS</a>
+                </div>
+
+                <!-- Khomod DNS -->
+                <div class="dns-button">
+                    <h3>Khomod DNS</h3>
+                    <p>11/10 Success Rate</p>
+                    <a href="https://raw.githubusercontent.com/toasty-dev/Khomod/refs/heads/main/khomodver2.mobileconfig." class="download-btn">Get DNS</a>
+                </div>
+
+                <!-- Khoindvn DNS -->
+                <div class="dns-button">
+                    <h3>Khoindvn DNS</h3>
+                    <p>10/10 Success Rate</p>
+                    <a href="https://github.com/khoindvnDNS/iOS/raw/main/DNS/khoindns.mobileconfig" class="download-btn">Get DNS</a>
+                </div>
+
+                <!-- Qsatatic DNS -->
+                <div class="dns-button">
+                    <h3>Qstatic DNS</h3>
+                    <p>10/10 Success Rate</p>
+                    <a href="https://github.com/char843vvv/qstaticdns/releases/download/dns/qstaticdns.mobileconfig" class="download-btn">Get DNS</a>
+                </div>
+            </div>
         </div>
+
         <footer>
             © 2025 AlienCheats. All rights reserved.
         </footer>
