@@ -1,485 +1,500 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AlienCheats</title>
-  <style>
-    :root {
-      --primary-color: #00ff9d;
-      --secondary-color: #1a1b3b;
-      --accent-color: rgba(0, 255, 157, 0.7);
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlienCheats</title>
+    <style>
+        :root {
+            --primary-color: #00ff9d;
+            --secondary-color: #1a1b3b;
+            --accent-color: rgba(0, 255, 157, 0.7);
+        }
 
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    body {
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-      color: #ffffff;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-    }
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #ffffff;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
 
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-    .particles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: -1;
-    }
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
 
-    .particle {
-      position: absolute;
-      width: calc(2px + 3 * random());
-      height: calc(2px + 3 * random());
-      background: rgba(255, 255, 255, 0.5);
-      border-radius: 50%;
-      animation: float 6s infinite;
-    }
+        .particle {
+            position: absolute;
+            width: calc(2px + 3 * random());
+            height: calc(2px + 3 * random());
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float 6s infinite;
+        }
 
-    @keyframes float {
-      0% {
-        transform: translateY(0) translateX(0);
-        opacity: 0;
-      }
-      50% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-100vh) translateX(100px);
-        opacity: 0;
-      }
-    }
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
 
-    /* Container with fade-in after start screen */
-    .container {
-      text-align: center;
-      padding: 30px;
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 20px;
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      max-width: 1400px;
-      width: 95%;
-      margin: 20px auto;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-      opacity: 0;
-      transform: scale(0.95);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    
-    .container.show {
-      opacity: 1;
-      transform: scale(1);
-    }
+        .container {
+            text-align: center;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 1400px;
+            width: 95%;
+            margin: 20px auto;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .container.show {
+            opacity: 1;
+            transform: scale(1);
+        }
 
-    /* Sticky Navigation */
-    header {
-      width: 100%;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(10px);
-      padding: 10px 0;
-    }
+        header {
+            width: 100%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            padding: 10px 0;
+        }
 
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
 
-    nav a {
-      color: #ffffff;
-      text-decoration: none;
-      padding: 12px 25px;
-      border-radius: 8px;
-      transition: all 0.4s ease;
-      background: rgba(255, 255, 255, 0.1);
-      font-weight: 500;
-      letter-spacing: 1px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            transition: all 0.4s ease;
+            background: rgba(255, 255, 255, 0.1);
+            font-weight: 500;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
-    nav a:hover {
-      background: rgba(0, 255, 157, 0.3);
-      transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(0, 255, 157, 0.2);
-    }
+        nav a:hover {
+            background: rgba(0, 255, 157, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 255, 157, 0.2);
+        }
 
-    h1 {
-      font-size: 4em;
-      margin-bottom: 30px;
-      text-transform: uppercase;
-      letter-spacing: 5px;
-      animation: glitch 5s infinite;
-      font-weight: 800;
-    }
+        h1 {
+            font-size: 4em;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            animation: glitch 5s infinite;
+            font-weight: 800;
+        }
 
-    @keyframes glitch {
-      0% { text-shadow: 0 0 15px rgba(0, 255, 157, 0.7); }
-      2% { text-shadow: 4px 0 15px rgba(255, 0, 157, 0.7); }
-      4% { text-shadow: -4px 0 15px rgba(0, 157, 255, 0.7); }
-      6% { text-shadow: 0 0 15px rgba(0, 255, 157, 0.7); }
-      98% { text-shadow: 4px 0 15px rgba(255, 0, 157, 0.7); }
-      100% { text-shadow: 0 0 15px rgba(0, 255, 157, 0.7); }
-    }
+        @keyframes glitch {
+            0% { text-shadow: 0 0 15px rgba(0, 255, 157, 0.7); }
+            2% { text-shadow: 4px 0 15px rgba(255, 0, 157, 0.7); }
+            4% { text-shadow: -4px 0 15px rgba(0, 157, 255, 0.7); }
+            6% { text-shadow: 0 0 15px rgba(0, 255, 157, 0.7); }
+            98% { text-shadow: 4px 0 15px rgba(255, 0, 157, 0.7); }
+            100% { text-shadow: 0 0 15px rgba(0, 255, 157, 0.7); }
+        }
 
-    .section {
-      display: none;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
+        .section {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
 
-    .section.active {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-    }
+        .section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-    .button-container {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin: 20px 0;
-    }
+        .button-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
 
-    .discord-button,
-    .youtube-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 15px;
-      padding: 15px 30px;
-      border-radius: 12px;
-      text-decoration: none;
-      color: white;
-      transition: all 0.4s ease;
-      backdrop-filter: blur(8px);
-      font-size: 1.2em;
-      border: 1px solid;
-    }
+        .discord-button,
+        .youtube-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 30px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(8px);
+            font-size: 1.2em;
+            border: 1px solid;
+        }
 
-    .discord-button {
-      background: rgba(88, 101, 242, 0.4);
-      border-color: rgba(88, 101, 242, 0.2);
-    }
+        .discord-button {
+            background: rgba(88, 101, 242, 0.4);
+            border-color: rgba(88, 101, 242, 0.2);
+        }
 
-    .discord-button:hover {
-      transform: translateY(-5px);
-      background: rgba(88, 101, 242, 0.6);
-      box-shadow: 0 8px 25px rgba(88, 101, 242, 0.4);
-    }
+        .discord-button:hover {
+            transform: translateY(-5px);
+            background: rgba(88, 101, 242, 0.6);
+            box-shadow: 0 8px 25px rgba(88, 101, 242, 0.4);
+        }
 
-    .youtube-button {
-      background: rgba(255, 0, 0, 0.4);
-      border-color: rgba(255, 0, 0, 0.2);
-    }
+        .youtube-button {
+            background: rgba(255, 0, 0, 0.4);
+            border-color: rgba(255, 0, 0, 0.2);
+        }
 
-    .youtube-button:hover {
-      transform: translateY(-5px);
-      background: rgba(255, 0, 0, 0.6);
-      box-shadow: 0 8px 25px rgba(255, 0, 0, 0.4);
-    }
+        .youtube-button:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 0, 0, 0.6);
+            box-shadow: 0 8px 25px rgba(255, 0, 0, 0.4);
+        }
 
-    .dns-section {
-      padding: 30px;
-    }
+        .dns-section,
+        .esign-section {
+            padding: 30px;
+        }
 
-    .dns-buttons {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
+        .dns-buttons,
+        .esign-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
 
-    .dns-button {
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 15px;
-      padding: 25px;
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      transition: all 0.4s ease;
-    }
+        .dns-button,
+        .esign-button {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+        }
 
-    .dns-button:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 10px 30px rgba(0, 255, 157, 0.2);
-    }
+        .dns-button:hover,
+        .esign-button:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0, 255, 157, 0.2);
+        }
 
-    .dns-button h3 {
-      color: var(--primary-color);
-      margin-bottom: 15px;
-      font-size: 1.4em;
-      letter-spacing: 1px;
-    }
+        .dns-button h3,
+        .esign-button h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.4em;
+            letter-spacing: 1px;
+        }
 
-    .dns-button p {
-      color: #ffffff;
-      margin-bottom: 20px;
-      font-size: 1.1em;
-      opacity: 0.9;
-    }
+        .dns-button p,
+        .esign-button p {
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
 
-    .download-btn {
-      display: inline-block;
-      background: rgba(0, 255, 157, 0.3);
-      color: white;
-      padding: 12px 25px;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: all 0.4s ease;
-      font-weight: 500;
-      letter-spacing: 1px;
-      border: 1px solid rgba(0, 255, 157, 0.2);
-    }
+        .download-btn {
+            display: inline-block;
+            background: rgba(0, 255, 157, 0.3);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            font-weight: 500;
+            letter-spacing: 1px;
+            border: 1px solid rgba(0, 255, 157, 0.2);
+        }
 
-    .download-btn:hover {
-      background: rgba(0, 255, 157, 0.5);
-      transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(0, 255, 157, 0.3);
-    }
+        .download-btn:hover {
+            background: rgba(0, 255, 157, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 255, 157, 0.3);
+        }
 
-    footer {
-      margin-top: 30px;
-      font-size: 0.9em;
-      opacity: 0.8;
-      letter-spacing: 1px;
-      animation: pulse 3s infinite;
-      padding: 20px 0;
-    }
+        .esign-button img {
+            width: 80px;
+            height: 80px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            background: #2196F3;
+            padding: 10px;
+        }
 
-    @keyframes pulse {
-      0% { opacity: 0.8; }
-      50% { opacity: 0.4; }
-      100% { opacity: 0.8; }
-    }
+        footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            opacity: 0.8;
+            letter-spacing: 1px;
+            animation: pulse 3s infinite;
+            padding: 20px 0;
+        }
 
-    /* Start Screen Styles */
-    .start-screen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      flex-direction: column;
-      animation: fadeIn 0.8s ease;
-    }
+        @keyframes pulse {
+            0% { opacity: 0.8; }
+            50% { opacity: 0.4; }
+            100% { opacity: 0.8; }
+        }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
+        .start-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            flex-direction: column;
+            animation: fadeIn 0.8s ease;
+        }
 
-    .start-screen h1 {
-      font-size: 3em;
-      margin-bottom: 30px;
-      animation: glitch 2s infinite;
-    }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
 
-    .get-started-btn {
-      background: var(--accent-color);
-      border: none;
-      padding: 15px 30px;
-      font-size: 1.5em;
-      color: #ffffff;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+        .get-started-btn {
+            background: var(--accent-color);
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.5em;
+            color: #ffffff;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-    .get-started-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 20px rgba(0, 255, 157, 0.4);
-    }
+        .get-started-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 255, 157, 0.4);
+        }
 
-    /* Scroll Down Indicator */
-    .scroll-down {
-      position: absolute;
-      bottom: 20px;
-      font-size: 1.2em;
-      animation: bounce 2s infinite;
-      cursor: pointer;
-    }
+        .scroll-down {
+            position: absolute;
+            bottom: 20px;
+            font-size: 1.2em;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
 
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(-10px); }
-      60% { transform: translateY(-5px); }
-    }
-  </style>
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+    </style>
 </head>
 <body>
-  <div class="particles" id="particles"></div>
+    <div class="particles" id="particles"></div>
 
-  <!-- Start Screen -->
-  <div id="startScreen" class="start-screen">
-    <h1>Welcome to AlienCheats</h1>
-    <button id="getStartedBtn" class="get-started-btn">Get Started</button>
-    <div class="scroll-down" id="scrollDown">⇩</div>
-  </div>
-
-  <header>
-    <nav>
-      <a href="#home" class="nav-link" data-section="home">Home</a>
-      <a href="#dns" class="nav-link" data-section="dns">DNS</a>
-      <a href="#direct-installs" class="nav-link">Direct Installs</a>
-      <a href="#tutorials" class="nav-link">Tutorials</a>
-    </nav>
-  </header>
-
-  <div id="mainContainer" class="container">
-    <h1>AlienCheats</h1>
-
-    <div id="home" class="section active">
-      <div class="button-container">
-        <a href="https://discord.gg/wW8b5FbXAr" target="_blank" class="discord-button">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0id2hpdGUiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTIwLjMyNCA0LjE5OWMtMS41MDUtMS4yNTYtMy45MS0xLjQ3Ni01LjIzNy0xLjQ3NmwtLjI1NS4wMDFjLS41NDcgMC0xLjA5My4wMzctMS42MzcuMTEtLjM2Ny0uNjgyLTEuMTgyLTEuMTU2LTIuMTI0LTEuMTU2LS45NDIgMC0xLjc1OC40NzQtMi4xMjQgMS4xNTYtLjU0NC0uMDczLTEuMDktLjExLTEuNjM3LS4xMWwtLjI1NS0uMDAxYy0xLjMyNyAwLTMuNzMyLjIyLTUuMjM3IDEuNDc2QzEuNDYxIDQuMjIgMCA4LjI1OCAwIDEyLjQyNmMwIDQuMjE4IDEuNDk0IDcuODkyIDIuNzA1IDguNzMxIDEuMjEyLjgzOSA0LjI4MSAxLjUzMyA1LjQxMiAxLjUzM2wuNDU0LS4wMDRjLjY2Ni0uMDA2IDEuMzMtLjA2IDEuOTg0LS4xNi4zODMuNjM3IDEuMTc0IDEuMDcxIDIuMDgzIDEuMDcxLjkwOSAwIDEuNy0uNDM0IDIuMDgzLTEuMDcxLjY1NC4xIDEuMzE4LjE1NCAxLjk4NC4xNmwuNDU0LjAwNGMxLjEzMSAwIDQuMi0uNjk0IDUuNDEyLTEuNTMzIDEuMjExLS44MzkgMi43MDUtNC41MTMgMi43MDUtOC43MzEuMDAxLTQuMTY4LTEuNDYtOC4yMDYtMi43OTctOC4yMjd6bS0yLjk2NSAxMS4xMjJjLS4xMjkgMS43ODktLjY5OCAzLjE2NS0xLjQ3MSAzLjE2NS0uNzcyIDAtMS4zNDItMS4zNzYtMS40NzEtMy4xNjUtLjAzNi0uNDg3LS4wNTMtLjk3NC0uMDUzLTEuNDYyIDAtLjQ4OC4wMTctLjk3NS4wNTMtMS40NjIuMTI5LTEuNzg5LjY5OC0zLjE2NSAxLjQ3MS0zLjE2NS43NzIgMCAxLjM0MiAxLjM3NiAxLjQ3MSAzLjE2NS4wMzYuNDg3LjA1My45NzQuMDUzIDEuNDYyIDAgLjQ4OC0uMDE3Ljk3NS0uMDUzIDEuNDYyeiIvPjwvc3ZnPg==" alt="Discord Logo">
-          <span>Join our Discord</span>
-        </a>
-        
-        <a href="https://www.youtube.com/@Iamarealfrog" target="_blank" class="youtube-button">
-          <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0id2hpdGUiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTIzLjQ5OCA2LjE4NmEzLjAxNiAzLjAxNiAwIDAgMC0yLjEyMi0yLjEzNkMxOS41MDUgMy41NDUgMTIgMy41NDUgMTIgMy41NDVzLTcuNTA1IDAtOS4zNzcuNTA1QTMuMDE3IDMuMDE3IDAgMCAwIC41MDIgNi4xODZDMCA4LjA3IDAgMTIgMCAxMnMwIDMuOTMuNTAyIDUuODE0YTMuMDE2IDMuMDE2IDAgMCAwIDIuMTIyIDIuMTM2YzEuODcxLjUwNSA5LjM3Ni41MDUgOS4zNzYuNTA1czYuNTA1IDAgOS4zNzctLjUwNWEzLjAxNSAzLjAxNSAwIDAgMCAyLjEyMi0yLjEzNkMyNCAxNS45MyAyNCAxMiAyNCAxMnMwLTMuOTMtLjUwMi01LjgxNHpNOS41NDUgMTUuNTY4VjguNDMyTDE1LjgxOCAxMmwtNi4yNzMgMy41Njh6Ii8+PC9zdmc+" alt="YouTube Logo">
-          <span>Subscribe on YouTube</span>
-        </a>
-      </div>
+    <!-- Start Screen -->
+    <div id="startScreen" class="start-screen">
+        <h1>Welcome to AlienCheats</h1>
+        <button id="getStartedBtn" class="get-started-btn">Get Started</button>
+        <div class="scroll-down" id="scrollDown">⇩</div>
     </div>
 
-    <div id="dns" class="section">
-      <div class="dns-section">
-        <div class="dns-buttons">
-          <!-- Spartan DNS -->
-          <div class="dns-button">
-            <h3>Spartan DNS</h3>
-            <p>9/10 Success Rate</p>
-            <a href="https://raw.githubusercontent.com/geololll/VyperHub/main/VyperHubs.mobileconfig" class="download-btn">Get DNS</a>
-          </div>
+    <header>
+        <nav>
+            <a href="#home" class="nav-link" data-section="home">Home</a>
+            <a href="#dns" class="nav-link" data-section="dns">DNS</a>
+            <a href="#direct-installs" class="nav-link" data-section="direct-installs">Direct Installs</a>
+            <a href="#tutorials" class="nav-link">Tutorials</a>
+        </nav>
+    </header>
 
-          <!-- CSL DNS -->
-          <div class="dns-button">
-            <h3>CSL DNS</h3>
-            <p>10/10 Success Rate</p>
-            <a href="https://cdn.discordapp.com/attachments/1195472555071516775/1278801685476540466/CSLdns.mobileconfig?ex=66d2c920&is=66d177a0&hm=df7d8dc5f0d9be64f4b200c65b3c866ec6f91189c73f0946f9984477012e1695&" class="download-btn">Get DNS</a>
-          </div>
+    <div id="mainContainer" class="container">
+        <h1>AlienCheats</h1>
 
-          <!-- Anti Revoke DNS -->
-          <div class="dns-button">
-            <h3>Anti Revoke DNS</h3>
-            <p>10/10 Success Rate</p>
-            <a href="https://github.com/toasty-dev/Khomod/raw/7401ca4719c9080a96ee902f800ebf009f08912b/khomod.mobileconfig" class="download-btn">Get DNS</a>
-          </div>
-
-          <!-- Khomod DNS -->
-          <div class="dns-button">
-            <h3>Khomod DNS</h3>
-            <p>11/10 Success Rate</p>
-            <a href="https://raw.githubusercontent.com/toasty-dev/Khomod/refs/heads/main/khomodver2.mobileconfig." class="download-btn">Get DNS</a>
-          </div>
-
-          <!-- Khoindvn DNS -->
-          <div class="dns-button">
-            <h3>Khoindvn DNS</h3>
-            <p>10/10 Success Rate</p>
-            <a href="https://github.com/khoindvnDNS/iOS/raw/main/DNS/khoindns.mobileconfig" class="download-btn">Get DNS</a>
-          </div>
-
-          <!-- Qstatic DNS -->
-          <div class="dns-button">
-            <h3>Qstatic DNS</h3>
-            <p>10/10 Success Rate</p>
-            <a href="https://github.com/char843vvv/qstaticdns/releases/download/dns/qstaticdns.mobileconfig" class="download-btn">Get DNS</a>
-          </div>
+        <!-- Home Section -->
+        <div id="home" class="section active">
+            <div class="button-container">
+                <a href="https://discord.gg/wW8b5FbXAr" target="_blank" class="discord-button">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0id2hpdGUiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTIwLjMyNCA0LjE5OWMtMS41MDUtMS4yNTYtMy45MS0xLjQ3Ni01LjIzNy0xLjQ3NmwtLjI1NS4wMDFjLS41NDcgMC0xLjA5My4wMzctMS42MzcuMTEtLjM2Ny0uNjgyLTEuMTgyLTEuMTU2LTIuMTI0LTEuMTU2LS45NDIgMC0xLjc1OC40NzQtMi4xMjQgMS4xNTYtLjU0NC0uMDczLTEuMDktLjExLTEuNjM3LS4xMWwtLjI1NS0uMDAxYy0xLjMyNyAwLTMuNzMyLjIyLTUuMjM3IDEuNDc2QzEuNDYxIDQuMjIgMCA4LjI1OCAwIDEyLjQyNmMwIDQuMjE4IDEuNDk0IDcuODkyIDIuNzA1IDguNzMxIDEuMjEyLjgzOSA0LjI4MSAxLjUzMyA1LjQxMiAxLjUzM2wuNDU0LS4wMDRjLjY2Ni0uMDA2IDEuMzMtLjA2IDEuOTg0LS4xNi4zODMuNjM3IDEuMTc0IDEuMDcxIDIuMDgzIDEuMDcxLjkwOSAwIDEuNy0uNDM0IDIuMDgzLTEuMDcxLjY1NC4xIDEuMzE4LjE1NCAxLjk4NC4xNmwuNDU0LjAwNGMxLjEzMSAwIDQuMi0uNjk0IDUuNDEyLTEuNTMzIDEuMjExLS44MzkgMi43MDUtNC41MTMgMi43MDUtOC43MzEuMDAxLTQuMTY4LTEuNDYtOC4yMDYtMi43OTctOC4yMjd6bS0yLjk2NSAxMS4xMjJjLS4xMjkgMS43ODktLjY5OCAzLjE2NS0xLjQ3MSAzLjE2NS0uNzcyIDAtMS4zNDItMS4zNzYtMS40NzEtMy4xNjUtLjAzNi0uNDg3LS4wNTMtLjk3NC0uMDUzLTEuNDYyIDAtLjQ4OC4wMTctLjk3NS4wNTMtMS40NjIuMTI5LTEuNzg5LjY5OC0zLjE2NSAxLjQ3MS0zLjE2NS43NzIgMCAxLjM0MiAxLjM3NiAxLjQ3MSAzLjE2NS4wMzYuNDg3LjA1My45NzQuMDUzIDEuNDYyIDAgLjQ4OC0uMDE3Ljk3NS0uMDUzIDEuNDYyeiIvPjwvc3ZnPg==" alt="Discord Logo">
+                    <span>Join our Discord</span>
+                </a>
+                
+                <a href="https://www.youtube.com/@Iamarealfrog" target="_blank" class="youtube-button">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0id2hpdGUiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTIzLjQ5OCA2LjE4NmEzLjAxNiAzLjAxNiAwIDAgMC0yLjEyMi0yLjEzNkMxOS41MDUgMy41NDUgMTIgMy41NDUgMTIgMy41NDVzLTcuNTA1IDAtOS4zNzcuNTA1QTMuMDE3IDMuMDE3IDAgMCAwIC41MDIgNi4xODZDMCA4LjA3IDAgMTIgMCAxMnMwIDMuOTMuNTAyIDUuODE0YTMuMDE2IDMuMDE2IDAgMCAwIDIuMTIyIDIuMTM2YzEuODcxLjUwNSA5LjM3Ni41MDUgOS4zNzYuNTA1czYuNTA1IDAgOS4zNzctLjUwNWEzLjAxNSAzLjAxNSAwIDAgMCAyLjEyMi0yLjEzNkMyNCAxNS45MyAyNCAxMiAyNCAxMnMwLTMuOTMtLjUwMi01LjgxNHpNOS41NDUgMTUuNTY4VjguNDMyTDE1LjgxOCAxMmwtNi4yNzMgMy41Njh6Ii8+PC9zdmc+" alt="YouTube Logo">
+                    <span>Subscribe on YouTube</span>
+                </a>
+            </div>
         </div>
-      </div>
+
+        <!-- DNS Section -->
+        <div id="dns" class="section">
+            <div class="dns-section">
+                <div class="dns-buttons">
+                    <div class="dns-button">
+                        <h3>Spartan DNS</h3>
+                        <p>9/10 Success Rate</p>
+                        <a href="https://raw.githubusercontent.com/geololll/VyperHub/main/VyperHubs.mobileconfig" class="download-btn">Get DNS</a>
+                    </div>
+
+                    <div class="dns-button">
+                        <h3>CSL DNS</h3>
+                        <p>10/10 Success Rate</p>
+                        <a href="https://cdn.discordapp.com/attachments/1195472555071516775/1278801685476540466/CSLdns.mobileconfig?ex=66d2c920&is=66d177a0&hm=df7d8dc5f0d9be64f4b200c65b3c866ec6f91189c73f0946f9984477012e1695&" class="download-btn">Get DNS</a>
+                    </div>
+
+                    <div class="dns-button">
+                        <h3>Anti Revoke DNS</h3>
+                        <p>10/10 Success Rate</p>
+                        <a href="https://github.com/toasty-dev/Khomod/raw/7401ca4719c9080a96ee902f800ebf009f08912b/khomod.mobileconfig" class="download-btn">Get DNS</a>
+                    </div>
+
+                    <div class="dns-button">
+                        <h3>Khomod DNS</h3>
+                        <p>11/10 Success Rate</p>
+                        <a href="https://raw.githubusercontent.com/toasty-dev/Khomod/refs/heads/main/khomodver2.mobileconfig." class="download-btn">Get DNS</a>
+                    </div>
+
+                    <div class="dns-button">
+                        <h3>Khoindvn DNS</h3>
+                        <p>10/10 Success Rate</p>
+                        <a href="https://github.com/khoindvnDNS/iOS/raw/main/DNS/khoindns.mobileconfig" class="download-btn">Get DNS</a>
+                    </div>
+
+                    <div class="dns-button">
+                        <h3>Qstatic DNS</h3>
+                        <p>10/10 Success Rate</p>
+                        <a href="https://github.com/char843vvv/qstaticdns/releases/download/dns/qstaticdns.mobileconfig" class="download-btn">Get DNS</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Direct Installs Section -->
+        <div id="direct-installs" class="section">
+            <div class="esign-section">
+                <h2>ESign Direct Installs</h2>
+                <div class="esign-buttons">
+                    <div class="esign-button">
+                        <img src="YOUR_ESIGN_LOGO_URL" alt="ESign Logo">
+                        <h3>ESign | AVEX DIGITAL INC</h3>
+                        <p>Status: Revoked (Use DNS)</p>
+                        <a href="https://api.khoindvn.eu.org/0qvzM4" class="download-btn">Download</a>
+                    </div>
+
+                    <div class="esign-button">
+                        <img src="YOUR_ESIGN_LOGO_URL" alt="ESign Logo">
+                        <h3>Sunshine 1</h3>
+                        <p>Status: Revoked (Use DNS)</p>
+                        <a href="https://api.khoindvn.eu.org/gC8Roi" class="download-btn">Download</a>
+                    </div>
+
+                    <!-- Add all other ESign buttons following the same pattern -->
+                    <!-- Continue adding all ESign buttons from the clipboard text -->
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            © 2025 AlienCheats. All rights reserved.
+        </footer>
     </div>
 
-    <!-- Additional Section: About -->
-    <div id="about" class="section">
-      <div class="dns-section">
-        <h2>About AlienCheats</h2>
-        <p>AlienCheats is your one-stop solution for the best DNS configurations, direct installs, tutorials, and more. We bring you the latest tools and guides to enhance your online experience.</p>
-      </div>
-    </div>
-
-    <footer>
-      © 2025 AlienCheats. All rights reserved.
-    </footer>
-  </div>
-
-  <script>
-    // Enhanced particle animation
-    const particlesContainer = document.getElementById('particles');
-    for (let i = 0; i < 100; i++) {
-      const particle = document.createElement('div');
-      particle.className = 'particle';
-      particle.style.left = Math.random() * 100 + 'vw';
-      particle.style.top = Math.random() * 100 + 'vh';
-      particle.style.animationDelay = Math.random() * 5 + 's';
-      particle.style.opacity = Math.random() * 0.5 + 0.3;
-      particle.style.width = Math.floor(Math.random() * 4) + 'px';
-      particle.style.height = Math.floor(Math.random() * 4) + 'px';
-      particlesContainer.appendChild(particle);
-    }
-
-    // Smooth navigation using data-section attribute
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const sectionId = link.getAttribute('data-section');
-        if (sectionId) {
-          document.querySelectorAll('.section').forEach(section => {
-            section.classList.remove('active');
-          });
-          document.getElementById(sectionId).classList.add('active');
-          // Scroll to the section smoothly
-          document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+    <script>
+        // Enhanced particle animation
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 100; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.top = Math.random() * 100 + 'vh';
+            particle.style.animationDelay = Math.random() * 5 + 's';
+            particle.style.opacity = Math.random() * 0.5 + 0.3;
+            particle.style.width = Math.floor(Math.random() * 4) + 'px';
+            particle.style.height = Math.floor(Math.random() * 4) + 'px';
+            particlesContainer.appendChild(particle);
         }
-      });
-    });
 
-    // Start screen functionality
-    const startScreen = document.getElementById('startScreen');
-    const getStartedBtn = document.getElementById('getStartedBtn');
-    const scrollDown = document.getElementById('scrollDown');
-    const mainContainer = document.getElementById('mainContainer');
+        // Smooth navigation
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const sectionId = link.getAttribute('data-section');
+                if (sectionId) {
+                    document.querySelectorAll('.section').forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    document.getElementById(sectionId).classList.add('active');
+                }
+            });
+        });
 
-    getStartedBtn.addEventListener('click', () => {
-      startScreen.style.display = 'none';
-      mainContainer.classList.add('show');
-    });
+        // Start screen functionality
+        const startScreen = document.getElementById('startScreen');
+        const getStartedBtn = document.getElementById('getStartedBtn');
+        const scrollDown = document.getElementById('scrollDown');
+        const mainContainer = document.getElementById('mainContainer');
 
-    // Also allow scroll indicator to mimic "Get Started"
-    scrollDown.addEventListener('click', () => {
-      startScreen.style.display = 'none';
-      mainContainer.classList.add('show');
-    });
-  </script>
+        getStartedBtn.addEventListener('click', () => {
+            startScreen.style.display = 'none';
+            mainContainer.classList.add('show');
+        });
+
+        scrollDown.addEventListener('click', () => {
+            startScreen.style.display = 'none';
+            mainContainer.classList.add('show');
+        });
+    </script>
 </body>
 </html>
