@@ -5,7 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AlienCheats</title>
   <style>
-    * {
+    :root {
+      --primary-color: #00ff9d;
+      --secondary-color: #1a1b3b;
+      --accent-color: rgba(0, 255, 157, 0.7);
+    }
+
+    *, *::before, *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -16,21 +22,18 @@
       margin: 0;
       padding: 0;
       min-height: 100vh;
-      background: linear-gradient(45deg, #1a1b3b, #00ff9d);
+      background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
       color: #ffffff;
       overflow-x: hidden;
+      scroll-behavior: smooth;
     }
 
     @keyframes gradientBG {
-      0% { background-position: 0% 50% }
-      50% { background-position: 100% 50% }
-      100% { background-position: 0% 50% }
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .particles {
@@ -45,8 +48,8 @@
 
     .particle {
       position: absolute;
-      width: 3px;
-      height: 3px;
+      width: calc(2px + 3 * random());
+      height: calc(2px + 3 * random());
       background: rgba(255, 255, 255, 0.5);
       border-radius: 50%;
       animation: float 6s infinite;
@@ -66,6 +69,7 @@
       }
     }
 
+    /* Container with fade-in after start screen */
     .container {
       text-align: center;
       padding: 30px;
@@ -77,28 +81,28 @@
       width: 95%;
       margin: 20px auto;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      transform: scale(0.95);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    .container.show {
+      opacity: 1;
+      transform: scale(1);
     }
 
-    h1 {
-      font-size: 4em;
-      margin-bottom: 30px;
-      text-transform: uppercase;
-      letter-spacing: 5px;
-      animation: glitch 5s infinite;
-      font-weight: 800;
-    }
-
-    @keyframes glitch {
-      0% { text-shadow: 0 0 15px rgba(0, 255, 157, 0.7); }
-      2% { text-shadow: 4px 0 15px rgba(255, 0, 157, 0.7); }
-      4% { text-shadow: -4px 0 15px rgba(0, 157, 255, 0.7); }
-      6% { text-shadow: 0 0 15px rgba(0, 255, 157, 0.7); }
-      98% { text-shadow: 4px 0 15px rgba(255, 0, 157, 0.7); }
-      100% { text-shadow: 0 0 15px rgba(0, 255, 157, 0.7); }
+    /* Sticky Navigation */
+    header {
+      width: 100%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+      padding: 10px 0;
     }
 
     nav {
-      margin: 30px 0;
       display: flex;
       justify-content: center;
       gap: 20px;
@@ -123,11 +127,29 @@
       box-shadow: 0 5px 15px rgba(0, 255, 157, 0.2);
     }
 
+    h1 {
+      font-size: 4em;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      animation: glitch 5s infinite;
+      font-weight: 800;
+    }
+
+    @keyframes glitch {
+      0% { text-shadow: 0 0 15px rgba(0, 255, 157, 0.7); }
+      2% { text-shadow: 4px 0 15px rgba(255, 0, 157, 0.7); }
+      4% { text-shadow: -4px 0 15px rgba(0, 157, 255, 0.7); }
+      6% { text-shadow: 0 0 15px rgba(0, 255, 157, 0.7); }
+      98% { text-shadow: 4px 0 15px rgba(255, 0, 157, 0.7); }
+      100% { text-shadow: 0 0 15px rgba(0, 255, 157, 0.7); }
+    }
+
     .section {
       display: none;
       opacity: 0;
       transform: translateY(20px);
-      transition: all 0.5s ease;
+      transition: opacity 0.5s ease, transform 0.5s ease;
     }
 
     .section.active {
@@ -144,11 +166,11 @@
       margin: 20px 0;
     }
 
-    .discord-button {
+    .discord-button,
+    .youtube-button {
       display: inline-flex;
       align-items: center;
       gap: 15px;
-      background: rgba(88, 101, 242, 0.4);
       padding: 15px 30px;
       border-radius: 12px;
       text-decoration: none;
@@ -156,7 +178,12 @@
       transition: all 0.4s ease;
       backdrop-filter: blur(8px);
       font-size: 1.2em;
-      border: 1px solid rgba(88, 101, 242, 0.2);
+      border: 1px solid;
+    }
+
+    .discord-button {
+      background: rgba(88, 101, 242, 0.4);
+      border-color: rgba(88, 101, 242, 0.2);
     }
 
     .discord-button:hover {
@@ -166,18 +193,8 @@
     }
 
     .youtube-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 15px;
       background: rgba(255, 0, 0, 0.4);
-      padding: 15px 30px;
-      border-radius: 12px;
-      text-decoration: none;
-      color: white;
-      transition: all 0.4s ease;
-      backdrop-filter: blur(8px);
-      font-size: 1.2em;
-      border: 1px solid rgba(255, 0, 0, 0.2);
+      border-color: rgba(255, 0, 0, 0.2);
     }
 
     .youtube-button:hover {
@@ -213,7 +230,7 @@
     }
 
     .dns-button h3 {
-      color: #00ff9d;
+      color: var(--primary-color);
       margin-bottom: 15px;
       font-size: 1.4em;
       letter-spacing: 1px;
@@ -251,6 +268,7 @@
       opacity: 0.8;
       letter-spacing: 1px;
       animation: pulse 3s infinite;
+      padding: 20px 0;
     }
 
     @keyframes pulse {
@@ -266,28 +284,55 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: linear-gradient(45deg, #1a1b3b, #00ff9d);
+      background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 9999;
       flex-direction: column;
+      animation: fadeIn 0.8s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .start-screen h1 {
+      font-size: 3em;
+      margin-bottom: 30px;
+      animation: glitch 2s infinite;
     }
 
     .get-started-btn {
-      background: rgba(0, 255, 157, 0.7);
+      background: var(--accent-color);
       border: none;
       padding: 15px 30px;
       font-size: 1.5em;
       color: #ffffff;
       border-radius: 8px;
       cursor: pointer;
-      transition: all 0.3s ease;
-      margin-top: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .get-started-btn:hover {
       transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 255, 157, 0.4);
+    }
+
+    /* Scroll Down Indicator */
+    .scroll-down {
+      position: absolute;
+      bottom: 20px;
+      font-size: 1.2em;
+      animation: bounce 2s infinite;
+      cursor: pointer;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-10px); }
+      60% { transform: translateY(-5px); }
     }
   </style>
 </head>
@@ -298,16 +343,20 @@
   <div id="startScreen" class="start-screen">
     <h1>Welcome to AlienCheats</h1>
     <button id="getStartedBtn" class="get-started-btn">Get Started</button>
+    <div class="scroll-down" id="scrollDown">⇩</div>
   </div>
 
-  <div class="container">
-    <h1>AlienCheats</h1>
+  <header>
     <nav>
       <a href="#home" class="nav-link" data-section="home">Home</a>
       <a href="#dns" class="nav-link" data-section="dns">DNS</a>
       <a href="#direct-installs" class="nav-link">Direct Installs</a>
       <a href="#tutorials" class="nav-link">Tutorials</a>
     </nav>
+  </header>
+
+  <div id="mainContainer" class="container">
+    <h1>AlienCheats</h1>
 
     <div id="home" class="section active">
       <div class="button-container">
@@ -371,6 +420,14 @@
       </div>
     </div>
 
+    <!-- Additional Section: About -->
+    <div id="about" class="section">
+      <div class="dns-section">
+        <h2>About AlienCheats</h2>
+        <p>AlienCheats is your one-stop solution for the best DNS configurations, direct installs, tutorials, and more. We bring you the latest tools and guides to enhance your online experience.</p>
+      </div>
+    </div>
+
     <footer>
       © 2025 AlienCheats. All rights reserved.
     </footer>
@@ -379,16 +436,19 @@
   <script>
     // Enhanced particle animation
     const particlesContainer = document.getElementById('particles');
-    for (let i = 0; i < 75; i++) {
+    for (let i = 0; i < 100; i++) {
       const particle = document.createElement('div');
       particle.className = 'particle';
       particle.style.left = Math.random() * 100 + 'vw';
+      particle.style.top = Math.random() * 100 + 'vh';
       particle.style.animationDelay = Math.random() * 5 + 's';
       particle.style.opacity = Math.random() * 0.5 + 0.3;
+      particle.style.width = Math.floor(Math.random() * 4) + 'px';
+      particle.style.height = Math.floor(Math.random() * 4) + 'px';
       particlesContainer.appendChild(particle);
     }
 
-    // Smooth navigation
+    // Smooth navigation using data-section attribute
     document.querySelectorAll('.nav-link').forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
@@ -398,6 +458,8 @@
             section.classList.remove('active');
           });
           document.getElementById(sectionId).classList.add('active');
+          // Scroll to the section smoothly
+          document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
         }
       });
     });
@@ -405,8 +467,18 @@
     // Start screen functionality
     const startScreen = document.getElementById('startScreen');
     const getStartedBtn = document.getElementById('getStartedBtn');
+    const scrollDown = document.getElementById('scrollDown');
+    const mainContainer = document.getElementById('mainContainer');
+
     getStartedBtn.addEventListener('click', () => {
       startScreen.style.display = 'none';
+      mainContainer.classList.add('show');
+    });
+
+    // Also allow scroll indicator to mimic "Get Started"
+    scrollDown.addEventListener('click', () => {
+      startScreen.style.display = 'none';
+      mainContainer.classList.add('show');
     });
   </script>
 </body>
