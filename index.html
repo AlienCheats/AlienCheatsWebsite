@@ -17,58 +17,41 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            will-change: transform, opacity;
         }
 
         @keyframes backgroundWarp {
             0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        @keyframes alienPulse {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.05) rotate(2deg); }
-        }
-
-        @keyframes glitchAnimation {
-            2%, 64% { transform: translate(2px, 0) skew(0deg); }
-            4%, 60% { transform: translate(-2px, 0) skew(0deg); }
-            62% { transform: translate(0, 0) skew(5deg); }
+            100% { background-position: 100% 50%; }
         }
 
         @keyframes neonGlow {
             0%, 100% { 
                 text-shadow: 
                     0 0 7px var(--neon-green),
-                    0 0 10px var(--neon-green),
-                    0 0 21px var(--neon-green),
-                    0 0 42px var(--neon-green),
-                    0 0 82px var(--neon-green),
-                    0 0 92px var(--neon-green),
-                    0 0 102px var(--neon-green);
+                    0 0 10px var(--neon-green);
             }
             50% { 
                 text-shadow: 
                     0 0 5px var(--electric-blue),
-                    0 0 15px var(--electric-blue),
-                    0 0 25px var(--electric-blue);
+                    0 0 15px var(--electric-blue);
             }
         }
 
         body {
-            font-family: 'Orbitron', 'Arial', sans-serif;
+            font-family: 'Arial', sans-serif;
             background: linear-gradient(45deg, var(--deep-black), var(--dark-green), #0c2b24);
-            background-size: 400% 400%;
+            background-size: 200% 200%;
             color: var(--neon-green);
             overflow-x: hidden;
-            animation: backgroundWarp 15s ease infinite;
-            perspective: 1000px;
+            animation: backgroundWarp 10s linear infinite;
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0;
-            cursor: none; /* Custom cursor */
+            perspective: 1000px;
+            transform-style: preserve-3d;
         }
 
         .alien-interface {
@@ -76,17 +59,14 @@
             max-width: 1200px;
             height: 90vh;
             background: rgba(0,0,0,0.8);
-            border: 3px solid var(--neon-green);
-            border-radius: 20px;
+            border: 2px solid var(--neon-green);
+            border-radius: 15px;
             display: flex;
             overflow: hidden;
-            position: relative;
-            transform-style: preserve-3d;
-            animation: alienPulse 5s infinite alternate;
             box-shadow: 
                 0 0 10px var(--neon-green),
-                0 0 20px var(--electric-blue),
-                0 0 40px var(--deep-black);
+                0 0 20px var(--electric-blue);
+            transition: transform 0.3s ease;
         }
 
         .sidebar {
@@ -97,7 +77,6 @@
             align-items: center;
             padding-top: 20px;
             border-right: 2px solid var(--neon-green);
-            transform: translateZ(50px);
         }
 
         .nav-icon {
@@ -110,32 +89,12 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            transition: transform 0.2s ease, background 0.2s ease;
         }
 
         .nav-icon:hover {
             background: rgba(0,255,156,0.3);
-            transform: scale(1.1) rotateY(20deg);
-        }
-
-        .nav-icon::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(0deg, transparent, var(--electric-blue), transparent);
-            transform: rotate(-45deg);
-            animation: navShader 3s linear infinite;
-            opacity: 0.2;
-        }
-
-        @keyframes navShader {
-            0% { transform: rotate(-45deg) translateX(-100%); }
-            100% { transform: rotate(-45deg) translateX(100%); }
+            transform: scale(1.1);
         }
 
         .main-content {
@@ -152,54 +111,32 @@
             font-weight: bold;
             text-transform: uppercase;
             text-align: center;
-            animation: 
-                neonGlow 3s infinite alternate,
-                glitchAnimation 5s infinite linear;
+            animation: neonGlow 3s infinite alternate;
             position: relative;
         }
 
-        .glitch-text::before,
-        .glitch-text::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.8;
-        }
+        @media (max-width: 768px) {
+            .alien-interface {
+                width: 95vw;
+                height: 95vh;
+            }
 
-        .glitch-text::before {
-            left: 2px;
-            text-shadow: -2px 0 var(--glitch-color);
-            clip: rect(44px, 450px, 56px, 0);
-            animation: glitchAnimation 5s infinite linear alternate-reverse;
-        }
+            .sidebar {
+                width: 60px;
+            }
 
-        .glitch-text::after {
-            left: -2px;
-            text-shadow: -2px 0 var(--glitch-color);
-            clip: rect(44px, 450px, 56px, 0);
-            animation: glitchAnimation 5s infinite linear alternate;
-        }
+            .nav-icon {
+                width: 40px;
+                height: 40px;
+            }
 
-        /* Hover cursor replacement */
-        .cursor {
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--neon-green);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            z-index: 9999;
-            mix-blend-mode: difference;
-            transition: transform 0.1s ease;
+            .glitch-text {
+                font-size: 8vw;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="cursor"></div>
     <div class="alien-interface">
         <div class="sidebar">
             <div class="nav-icon">🏠</div>
@@ -208,28 +145,8 @@
             <div class="nav-icon">🛸</div>
         </div>
         <div class="main-content">
-            <h1 class="glitch-text" data-text="Alien Cheats">Alien Cheats</h1>
+            <h1 class="glitch-text">Alien Cheats</h1>
         </div>
     </div>
-
-    <script>
-        // Custom Cursor
-        const cursor = document.querySelector('.cursor');
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-
-        // Hover Effects
-        const navIcons = document.querySelectorAll('.nav-icon');
-        navIcons.forEach(icon => {
-            icon.addEventListener('mouseenter', () => {
-                icon.style.transform = 'scale(1.2) rotateZ(10deg)';
-            });
-            icon.addEventListener('mouseleave', () => {
-                icon.style.transform = 'scale(1) rotateZ(0deg)';
-            });
-        });
-    </script>
 </body>
 </html>
